@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AC台 桌面端下载</title>
+  <style>
+    :root {
+      --ink: #111318;
+      --muted: #5c6270;
+      --line: #e3e5ea;
+      --paper: #f7f8fa;
+      --blue: #007aff;
+      --blue-dark: #0063d1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .brand img {
+      width: 28px;
+      height: 28px;
+    }
+
+    .topbar a.version {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 84px 24px 56px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #34c759;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 68px);
+      line-height: 1.08;
+      letter-spacing: 0;
+      margin: 0 0 18px;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      max-width: 620px;
+      margin: 0 auto 38px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .download-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-width: 230px;
+      padding: 15px 26px;
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .download-btn .meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.15;
+    }
+
+    .download-btn .meta small {
+      font-size: 12px;
+      font-weight: 500;
+      opacity: .82;
+    }
+
+    .btn-windows {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(0, 122, 255, .24);
+    }
+
+    .btn-windows:hover {
+      background: var(--blue-dark);
+    }
+
+    .btn-macos {
+      background: #1d1d1f;
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(17, 17, 19, .16);
+    }
+
+    .btn-macos:hover {
+      background: #000;
+    }
+
+    .notice {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .shot-band {
+      max-width: 1160px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+    }
+
+    .shot-band img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 30px 80px rgba(20, 24, 40, .18);
+      background: #d7dbe2;
+    }
+
+    .guide {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 88px 24px;
+    }
+
+    .guide h2 {
+      font-size: 30px;
+      margin: 0 0 34px;
+      text-align: center;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+    }
+
+    .step b {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .step .num {
+      color: var(--blue);
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: inline-block;
+      font-size: 14px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        padding-top: 56px;
+      }
+
+      .download-btn {
+        min-width: 100%;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .guide {
+        padding: 56px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/ac-logo-256.png" alt="AC台">
+      <span>AC台</span>
+    </div>
+    <a class="version" href="#guide">使用说明</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span class="dot"></span>Windows / macOS 桌面端</div>
+      <h1>AC台</h1>
+      <p class="subtitle">AI Agent 协作系统桌面端，下载解压即可使用。</p>
+      <div class="download-row">
+        <a class="download-btn btn-windows" href="ACDesk-Windows-20260812.zip" download="AC台-Windows-20260812.zip">
+          <span class="meta">Windows 下载<small>20 MB · 便携版</small></span>
+        </a>
+        <a class="download-btn btn-macos" href="ACDesk-Mac-20260813.zip" download="AC台-Mac-20260813.zip">
+          <span class="meta">macOS 下载<small>27 MB · Apple Silicon</small></span>
+        </a>
+      </div>
+      <p class="notice">Windows 解压后双击「启动AC台.vbs」；macOS 解压后把 ACDesk.app 移到桌面。</p>
+    </section>
+
+    <div class="shot-band">
+      <img src="assets/ac-desk-ui-preview.png" alt="AC台界面">
+    </div>
+
+    <section class="guide" id="guide">
+      <h2>三步开始使用</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="num">01</span>
+          <b>选择系统下载</b>
+          <p>Windows 选择左侧蓝色按钮，macOS 选择黑色按钮。</p>
+        </div>
+        <div class="step">
+          <span class="num">02</span>
+          <b>解压压缩包</b>
+          <p>解压后保留 ACDesk.app 或「启动AC台.vbs」所在文件夹。</p>
+        </div>
+        <div class="step">
+          <span class="num">03</span>
+          <b>双击打开</b>
+          <p>macOS 首次打开若被拦截，右键 ACDesk.app 再选择「打开」。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>AC台 2.1.0 · AI Agent 协作系统</footer>
+</body>
+</html>
