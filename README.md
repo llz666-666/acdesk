@@ -11,7 +11,7 @@ https://llz666-666.github.io/acdesk/
 
 ## macOS 版
 
-1. 下载 ACDesk-Mac-20260813-clean.zip
+1. 下载 ACDesk-Mac-20260813-installer.zip
 2. 解压压缩包
-3. 把 ACDesk.app 移到桌面
-4. 双击打开
+3. 打开「安装AC台」，自动安装到桌面并启动
+4. 如果被拦截，右键「安装AC台」选择「打开」
